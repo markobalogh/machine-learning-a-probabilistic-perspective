@@ -1,0 +1,90 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry} % to modify margins
+\usepackage[T1]{fontenc}
+\usepackage{palatino}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\setlist[enumerate]{itemsep=1pt,topsep=2pt}
+\setlist[itemize]{itemsep=1pt,topsep=2pt}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,citecolor=blue,pdfpagemode=UseNone}
+\usepackage{amsfonts,amsmath}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{authblk}
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\usepackage{color}
+
+%Custom commands go here!
+\newcommand\calA{\mathcal{A}}
+\newcommand\calB{\mathcal{B}}
+\newcommand\calF{\mathcal{F}}
+\newcommand\calO{\mathcal{O}}
+\newcommand\calP{\mathcal{P}}
+\newcommand\calS{\mathcal{S}}
+\newcommand\calX{\mathcal{X}}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+% Theorem environments go here!
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{remark}{Remark}
+\newtheorem*{fact}{Fact}
+\newtheorem{example}{Example}
+
+\title{Machine Learning: A Probabilistic Perspective}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+    \subsection{Types of machine learning}
+        \paragraph{Predictive or Supervised Learning}
+            The goal is to learn a mapping from inputs to outputs given a labeled set of input-output pairs.
+        \paragraph{Descriptive or Unsupervised Learning}
+            The goal is to find interesting patterns in a given dataset.
+    \subsection{Supervised Learning}
+        \paragraph{Classification}
+            Learning a mapping from inputs $x$ to outputs $y$ where $y\in \{1,..., C\}$, with $C$ being the number of classes.
+            Classification can be formalized as \textbf{function approximation}.
+            Assume $y=f(x)$ for some unknown function $f$. We estimate $f$ given a labeled training set, and make predictions from the estimated function, which we denote $\hat{f}(x)$.
+            \subparagraph{Binary Classification}    
+                Where the number of classes is 2.
+            \subparagraph{Multiclass Classification}
+                Where the number of classes is greater than 2.
+            \subparagraph{Multi-label classification}
+                Where each instance may belong to multiple classes.
+            \subparagraph{Generalization}
+                Making predictions on inputs not in the training set.
+            \subparagraph{Probabilistic Predictions}
+                Given a model that outputs a probability for each class, we can make our "best guess" for the class of the instance by returning the most probable class label; the mode of the distribution. This is called the \textbf{MAP Prediction} or \textbf{Maximum A Posteriori}, meaning that the class has the highest likelihood given the instance.
+                \begin{equation}
+                    \hat{y}=\hat{f}(x)=argmax_c\ p(y=c|x,D)
+                \end{equation}
+                where $D$ is the training dataset.
+            \subparagraph{Real World Applications of Classification}
+                \begin{itemize}
+                    \item Document Classification
+                    \item Spam filtering
+                    \item Image Classification
+                    \item Handwriting Recognition
+                    \item Face detection and Recognition
+                \end{itemize}
+        \paragraph{Regression}
+            Like classification except that the response variable you are trying to predict is continuous.
+    \subsection{Unsupervised Learning}
+        The goal is to discover \emph{structure} in the data; this is sometimes called \emph{knowledge discovery}.
+        Can be formalized as \textbf{density estimation}, meaning building models that return a probability density for each input: $p(x_i|\theta)$.
+        \textbf{Supervised and unsupervised learning can be distinguished as conditional and unconditional density estimation, respectively.}
+
+\end{document}
