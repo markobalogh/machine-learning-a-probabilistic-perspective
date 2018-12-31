@@ -86,5 +86,18 @@
         The goal is to discover \emph{structure} in the data; this is sometimes called \emph{knowledge discovery}.
         Can be formalized as \textbf{density estimation}, meaning building models that return a probability density for each input: $p(x_i|\theta)$.
         \textbf{Supervised and unsupervised learning can be distinguished as conditional and unconditional density estimation, respectively.}
+        \subsubsection{Clustering}
+            The problem of separating data into groups. Let $K$ denote the number of clusters. The first goal is to estimate a probability distribution over the number of clusters, $p(K|D)$. The second goal is to estimate which cluster each point belongs to. The cluster each point belongs to would be known as a \emph{latent} or \emph{hidden} variable, because it isn't observed directly in the data. 
+            \paragraph{Discovering Latent Factors}
+                It's often useful to reduce the dimensionality of data to a lower dimensional subspace that caputres the "essence" of the data. This is called \textbf{dimensionality reduction}.
+
+                The motivation is that the raw data may be high dimensional but there may be only a small number of degrees of variability, corresponding to latent factors.
+                \subparagraph{Discovering Graph Structure}
+                    Sometimes we measure a set of correlated variables, and we would like to discover which ones are most correlated with others. This can be represented by a graph $G$, in which nodes represent variables, and edges represent direct dependence between variables
+            \paragraph{Matrix Completion} 
+                Sometimes we have missing information, and inferring plausible values for missing values from existing values is called \textbf{imputation}. This is sometimes called \emph{matrix completion}.
+                An example application is \emph{image inpainting}, in which holes in an image are filled in with realistic textures and shapes.
+                
+                Inferring values in an extremely large, extremely sparse matrix is sometimes called \emph{collaborative filtering}.
 
 \end{document}
