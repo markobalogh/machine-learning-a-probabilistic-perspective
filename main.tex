@@ -99,5 +99,41 @@
                 An example application is \emph{image inpainting}, in which holes in an image are filled in with realistic textures and shapes.
                 
                 Inferring values in an extremely large, extremely sparse matrix is sometimes called \emph{collaborative filtering}.
+    \subsection{Some basic concepts in machine learning}
+        \subsubsection{Parametric vs Non-parametric models}
+            Parametric models have a fixed number of parameters. Non-parametric models have a number of parameters that scales with the size of the dataset.
 
+            Parametric models have the advantage of being faster to use, but making stronger assumptions about the nature of the data generating distribution.
+
+        \subsubsection{A simple non-parametric classifier: K-nearest neighbors}
+            Checks the $K$ points which are nearest to the query instance $x$, counts how many members of each class there are in this set, and returns that empirical fraction as the estimate. This is an example of \textbf{memory-based learning} or \textbf{instance-based learning}.
+
+            A KNN classifier with $K=1$ induces a \textbf{Voronoi Tesselation} of the feature space, in which each point $x_i$ is associated with a partition of the space such that all points in the partition are closer to that $x_i$ than any other point in the training set.
+
+            It can be shown that the KNN classifier approaches a factor of 2 of the best possible classifier performance as the number of points in the training set approaches infinity.
+
+        \subsubsection{The curse of dimensionality}
+            As the number of dimensions of the feature space increases, the average instance density must decrease. Similarly, the average distance of the query instance to training instances must increase. This means that there are fewer points nearby to learn from when making an estimate on the query instance, and that it's harder to distinguish signal from noise, because irrelevant features "distract" learning algorithms. Information "local" to the query instance no longer is very local, because if you make your estimate from a fixed fraction of the data, the distance from the query instance needed to obtain that data increases dramatically. Even with just 3 features, if you want to estimate from $10\%$ of the training data, you need to pull data from a hypercube whose side length is half the width of the entire feature space. Hence the importance of dimensionality reduction.
+        \subsubsection{Parametric models for classification and regression}
+            The main way to combat the curse of dimensionality is to make some assumptions of the nature of the data generating distribution. These assumptions are known as \textbf{inductive bias} and are often embodied in the form of a \textbf{parametric model}.
+            \paragraph{Linear regression}
+                Asserts that the output is a linear function of the inputs:
+                \begin{equation}
+                    y(x) = w^Tx+\epsilon,
+                \end{equation}
+                where $w$ is a weight vector, $x$ is the input vector, and $epsilon$ represents the \emph{residual error} between the model's predictions and the true output.
+
+                It is often assumed that the residual error is normally distributed. This is denoted $\epsilon \sim N(\mu, \sigma^2).$
+
+                To make it clear that a model induces a conditional probability density, we may write:
+                \begin{equation}
+                    p(y|x,\theta) = N(y|\mu(x),\sigma^2(x)),
+                \end{equation}
+
+                In general, $\mu$ can be any function of $x$ - linear regression can model non-linear relationships by making it a nonlinear function. This is called \textbf{basis function expansion}. In standard linear regression $\mu(x)=w^Tx$.
+                
+                Many machine learning methods are actually just different ways of inducing the basis function from the training data.
+
+            \paragraph{Extending the input vector to simplify the use of a bias term}
+                A common notational practice is to extend the input vector so that it includes a term of constant value 1, so that $x = (1,x)$. This allows the bias term (like a y-intercept for a linear function) to be included in the weight vector and simplifies many formulas.
 \end{document}
